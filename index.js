@@ -27,10 +27,13 @@ app.use(function(req, res, next) {
 
 app.get("/latest-news", async function (req, res) {
     const source = req.query.source || "";
-    const news = await getNews(source);
+    const language = req.query.language || "english";
+    const news = await getNews(source, language);
     res.status(200).json({"news": news});
 });
 
 app.listen(3000, function () {
     console.log("Server started on port http://localhost:3000");
 });
+
+export default app;

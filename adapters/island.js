@@ -6,7 +6,7 @@ export default class Island extends BaseAdapter {
 
     static SOURCE = "island";
     
-    static async getNews(count = 10) {
+    static async getNews(count = 10, language = "english") {
         const newsList = [];
         try {
             const url = "https://island.lk/category/latest-news/";

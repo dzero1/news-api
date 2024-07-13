@@ -6,10 +6,19 @@ export default class NewsWire extends BaseAdapter {
 
     static SOURCE = "newswire";
     
-    static async getNews(count = 10) {
+    static async getNews(count = 10, language = "english") {
         const newsList = [];
         try {
-            const url = "https://www.newswire.lk/category/news/";
+            let url = "https://www.newswire.lk/category/news/";
+
+            switch (language) {
+                case "sinhala":
+                    url = "https://sinhala.newswire.lk/category/news/"
+                    break;            
+                default:
+                    break;
+            }
+
             const response = await axios.get(url);
             const $ = cheerio.load(response.data);
 

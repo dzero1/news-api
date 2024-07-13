@@ -19,18 +19,13 @@ export default class AdaDerana extends BaseAdapter {
                     url = "https://sinhala.adaderana.lk/sinhala-hot-news.php";
                     srcPrefix = "https://sinhala.adaderana.lk/"
                     break;
-                case 'tamil':
+                /* case 'tamil':
                     url = "https://tamil.adaderana.lk/morehotnews.php?sid=36";
                     srcPrefix = "https://tamil.adaderana.lk/"
                     mainContainer = "container";
                     newsContainer = "sports";
                     titleContainer = "h4";
-                    break;
-                case 'english':
-                default:
-                    url = "https://www.adaderana.lk/hot-news/";
-                    mainContainer = "main-content";
-                    break;
+                    break; */
             }
 
             const response = await axios.get(url);
@@ -38,7 +33,6 @@ export default class AdaDerana extends BaseAdapter {
 
             const _tag = `.${mainContainer} .${newsContainer}`;
             const news = $(_tag);  // Select all news elements
-            console.log(response.data, "found:", news.length, " news", _tag);
             for (let i = 0; i < Math.min(count, news.length); i++) {
                 const v = news[i];
                 try {

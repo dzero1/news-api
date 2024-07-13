@@ -6,7 +6,7 @@ export default class DailyMirror extends BaseAdapter {
 
     static SOURCE = "dailymirror";
     
-    static async getNews(count = 10) {
+    static async getNews(count = 10, language = "english") {
         const newsList = [];
         try {
             const url = "https://www.dailymirror.lk/";
