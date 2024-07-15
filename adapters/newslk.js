@@ -4,7 +4,7 @@ import BaseAdapter, {NewsFormat} from "./base.js";
 
 export default class NewsLK extends BaseAdapter {
 
-    static SOURCE = "news.lk";
+    static SOURCE = "newslk";
     
     static async getNews(count = 10, language = "english") {
         const newsList = [];

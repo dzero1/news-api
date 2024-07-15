@@ -9,11 +9,19 @@ import Lankadeepa from './adapters/lankadeepa.js';
 import Ada from './adapters/ada.js';
 import SriLankaGuardian from './adapters/srilankaguardian.js';
 import Thinakaran from './adapters/thinakaran.js';
+import AsianMirror from './adapters/asianmirror.js';
+import Tamilwin from './adapters/tamilwin.js';
+import JaffnaMuslim from './adapters/jaffnamuslim.js';
+import LankaCNews from './adapters/lankacnews.js';
+import LankaTruth from './adapters/lankatruth.js';
+import FT from './adapters/ft.js';
 
 export default async function getNews(source, language = "english") {
     let news = [];
     switch (source) {
-        case "news":
+
+        // multi language
+        case "newslk":
             news = await NewsLK.getNews(10, language);
             break;
         case "newsfirst":
@@ -25,28 +33,50 @@ export default async function getNews(source, language = "english") {
         case "hiru":
             news = await Hiru.getNews(10, language);
             break;
-        case "newswire":
-            news = await NewsWire.getNews(10, language);
-            break;
-        // case "ft":
-        case "island":
-            news = await Island.getNews(10, language);
-            break;
+
+        // Sinhala
         case "lankadeepa":
             news = await Lankadeepa.getNews(10, language);
             break;
         case "ada":
             news = await Ada.getNews(10, language);
             break;
-        case "srilankaguardian":
-            news = await SriLankaGuardian.getNews(10, language);
+        case "lankacnews":
+            news = await LankaCNews.getNews(10, language);
             break;
+        case "lankatruth":
+            news = await LankaTruth.getNews(10, language);
+            break;
+
+        // Tamil
         case "thinakaran":
             news = await Thinakaran.getNews(10, language);
             break;
+        case "tamilwin":
+            news = await Tamilwin.getNews(10, language);
+            break;
+        case "jaffnamuslim":
+            news = await JaffnaMuslim.getNews(10, language);
+            break;
+
+        // English
+        case "newswire":
+            news = await NewsWire.getNews(10, language);
+            break;
+        case "srilankaguardian":
+            news = await SriLankaGuardian.getNews(10, language);
+            break;
+        case "asianmirror":
+            news = await AsianMirror.getNews(10, language);
+            break;
         case "dailymirror":
-        default:
             news = await DailyMirror.getNews(10, language);
+            break;
+        case "island":
+            news = await Island.getNews(10, language);
+            break;
+        case "ft":
+            news = await FT.getNews(10, language);
             break;
     }
     return news;

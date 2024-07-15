@@ -23,8 +23,6 @@ export default class SriLankaGuardian extends BaseAdapter {
                     const href = $(v).find(".post-title a").attr('href').trim();
 
                     let imgcss = $(v).find("a:contains('https://blogger.googleusercontent.com/img')").text();
-                    console.log(imgcss);
-
                         imgcss = imgcss.substring(imgcss.indexOf("https://blogger.googleusercontent.com/img"));
                     const img = imgcss.substring(0, imgcss.indexOf('","'));
 

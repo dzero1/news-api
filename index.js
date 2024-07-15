@@ -21,6 +21,10 @@ app.use(
 
 // Express headers
 app.use(function(req, res, next) {
+    if (!req.headers.authorization || req.headers.authorization.split(' ')[1] !== process.env.AUTH) {
+      return res.status(403).json({ error: 'Unauthorized!' });
+    }
+
     res.setHeader("Content-Type", "application/json");
     next();
 });
