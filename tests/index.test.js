@@ -1,13 +1,17 @@
 import request from "supertest";
 import app from "../index.js";
 
-describe("multi language - GET /latest-news", () => {
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+describe("multi language - POST /scrap-news", () => {
   [
-    "news", "newsfirst", "adaderana", "hiru"
+    "newslk", "newsfirst", "adaderana", "hiru"
   ].forEach(source => {
     ["english","sinhala","tamil"].forEach(language => {
       it(`${source.toUpperCase()} ${language.toUpperCase()} - should have latest news`, async () => {
-        const res = await request(app).get(`/latest-news?source=${source}&language=${language}`);
+        const res = await request(app).post(`/scrap-news?source=${source}&language=${language}`);
         expect(res.statusCode).toBe(200);
         expect(res.body.news.length).toBeGreaterThan(0);
       });
@@ -15,13 +19,15 @@ describe("multi language - GET /latest-news", () => {
   });
 });
 
-describe("Sinhala - GET /latest-news", () => {
+await timeout(3000); 
+
+describe("Sinhala - POST /scrap-news", () => {
   [
     "lankadeepa", "ada", "lankatruth" //, "lankacnews"
   ].forEach(source => {
     ["sinhala"].forEach(language => {
       it(`${source.toUpperCase()} ${language.toUpperCase()} - should have latest news`, async () => {
-        const res = await request(app).get(`/latest-news?source=${source}&language=${language}`);
+        const res = await request(app).post(`/scrap-news?source=${source}&language=${language}`);
         expect(res.statusCode).toBe(200);
         expect(res.body.news.length).toBeGreaterThan(0);
       });
@@ -29,26 +35,31 @@ describe("Sinhala - GET /latest-news", () => {
   });
 });
 
-describe("Tamil - GET /latest-news", () => {
+await timeout(3000); 
+
+describe("Tamil - POST /scrap-news", () => {
   [
     "thinakaran", "tamilwin", "jaffnamuslim"
   ].forEach(source => {
     ["tamil"].forEach(language => {
       it(`${source.toUpperCase()} ${language.toUpperCase()} - should have latest news`, async () => {
-        const res = await request(app).get(`/latest-news?source=${source}&language=${language}`);
+        const res = await request(app).post(`/scrap-news?source=${source}&language=${language}`);
         expect(res.statusCode).toBe(200);
         expect(res.body.news.length).toBeGreaterThan(0);
       });
     });
   });
 });
-describe("English - GET /latest-news", () => {
+
+await timeout(3000); 
+
+describe("English - POST /scrap-news", () => {
   [
     "newswire", "srilankaguardian", "asianmirror", "dailymirror", "island", "ft"
   ].forEach(source => {
     ["english"].forEach(language => {
       it(`${source.toUpperCase()} ${language.toUpperCase()} - should have latest news`, async () => {
-        const res = await request(app).get(`/latest-news?source=${source}&language=${language}`);
+        const res = await request(app).post(`/scrap-news?source=${source}&language=${language}`);
         expect(res.statusCode).toBe(200);
         expect(res.body.news.length).toBeGreaterThan(0);
       });
