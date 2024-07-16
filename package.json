@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node --env-file=.env.dev --trace-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --testTimeout=300000 --detectOpenHandles",
-    "start": "node index.js",
+    "start": "node --env-file=.env.dev index.js --trace-warnings",
     "dev": "supervisor index.js"
   },
   "keywords": [],
