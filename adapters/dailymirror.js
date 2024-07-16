@@ -30,7 +30,7 @@ export default class DailyMirror extends BaseAdapter {
                     const img = $(v).find("img.img-fluid").attr('src').trim();
                     const time = $(v).find(".timesss").text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE, language).toJson());
 
                 } catch (error) {
                     console.error(error);

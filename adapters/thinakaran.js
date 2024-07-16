@@ -72,7 +72,7 @@ export default class Thinakaran extends BaseAdapter {
                     const img = $(v).find(".pcsl-thumb a").attr("data-bgset");
                     const time = $(v).find(".published").text();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 
                 } catch (error) {
                     console.error(error);

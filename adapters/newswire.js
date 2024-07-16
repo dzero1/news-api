@@ -33,7 +33,7 @@ export default class NewsWire extends BaseAdapter {
                     const img = $(v).find("img.wp-post-image").attr('src').trim();
                     const time = $(v).find(".entry-published").text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE, language).toJson());
 
                 } catch (error) {
                     console.error(error);

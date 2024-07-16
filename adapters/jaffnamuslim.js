@@ -26,7 +26,7 @@ export default class JaffnaMuslim extends BaseAdapter {
                     const time = $(v).find('article .date-header .published').text().trim();
                     const content = $(v).find('article .date-header .resumo span').text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
                 } catch (error) {
                     console.error(error);
                 }

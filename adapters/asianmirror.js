@@ -23,7 +23,7 @@ export default class AsianMirror extends BaseAdapter {
                     const img = $(v).find(".catItemImage img").length ? srcPrefix + $(v).find(".catItemImage img").attr('src').trim() : '';
                     const time = $(v).find('.catItemHeader .catItemMetaInfo .catItemDateCreated').text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE, language).toJson());
                 } catch (error) {
                     console.error(error);
                 }

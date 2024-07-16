@@ -32,7 +32,7 @@ export default class Hiru extends BaseAdapter {
                     const img = $(v).find(".sc-image img").attr('src').trim();
                     const time = $(v).find("..middle-tittle-time").text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 
                 } catch (error) { 
                     console.error(error);

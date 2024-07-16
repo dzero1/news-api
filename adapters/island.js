@@ -22,10 +22,11 @@ export default class Island extends BaseAdapter {
                     const title = $(v).find(".mvp-blog-story-in h2").text().trim();
                     const content = $(v).find(".mvp-blog-story-in p").text().trim();
                     const href = $(a).attr('href').trim();
-                    const img = $(v).find(".mvp-blog-story-img img.mvp-reg-img").attr('data-srcset').trim().split(",")[0].split(" ")[0].trim();
+                    let imgInfo = $(v).find(".mvp-blog-story-img img.mvp-reg-img").data('srcset') || $(v).find(".mvp-blog-story-img img.mvp-reg-img").attr('data-src');
+                    const img = imgInfo.trim().split(",")[0].split(" ")[0].trim()
                     const time = $(v).find(".entry-published").text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 
                 } catch (error) {
                     console.error(error);

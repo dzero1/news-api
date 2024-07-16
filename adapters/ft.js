@@ -23,7 +23,7 @@ export default class FT extends BaseAdapter {
                     const href = $(v).find("a").attr('href').trim();
                     const time = $(v).find(".card-body .date").text().trim().replace(title, '').trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
                 } catch (error) {
                     console.error(error);
                 }

@@ -22,7 +22,7 @@ export default class NewsFirst extends BaseAdapter {
                     const img = v.images.mobile_banner;
                     const time = v.modified;
 
-                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE, language).toJson());
                 } catch (error) {
                     console.error(error);
                 }

@@ -7,13 +7,15 @@ export default class BaseAdapter {
 }
 
 export class NewsFormat {
-    constructor(title, href, img, time, content, source){
+    constructor(title, href, img, time, content = "", source = "", language = "", category = ""){
         this.title = title;
         this.href = href;
         this.img = img;
         this.time = time;
         this.content = content;
         this.source = source;
+        this.language = language;
+        this.category = category;
     }
 
     toJson(){

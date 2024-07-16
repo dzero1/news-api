@@ -23,7 +23,7 @@ export default class Tamilwin extends BaseAdapter {
                         const img = $(v).find("img").attr('data-src').trim();
                         const time = $(v).find('h4 .article-footer span').text().trim();
 
-                        newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE).toJson());
+                        newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE, language).toJson());
                     }
                 } catch (error) {
                     console.error(error);

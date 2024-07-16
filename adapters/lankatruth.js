@@ -23,7 +23,7 @@ export default class LankaTruth extends BaseAdapter {
                     const img = $(v).find(".elementor-post__thumbnail__link img").attr('srcset').trim().split(",")[0].split(" ")[0].trim();
                     const time = $(v).find(".elementor-post__meta-data .elementor-post-date").text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
                 } catch (error) {
                     console.error(error);
                 }

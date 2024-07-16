@@ -24,7 +24,7 @@ export default class Ada extends BaseAdapter {
                     const img = $(v).find(".cat-image img").attr('src').trim();
                     const time = $(v).find(".cat-detail-1 h6").text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 
                 } catch (error) {
                     console.error(error);

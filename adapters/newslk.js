@@ -35,7 +35,7 @@ export default class NewsLK extends BaseAdapter {
                     const img = srcPrefix + $(v).find(`.catItemImageBlock img`).attr('src').trim();
                     const time = $(v).find(".catItemHeader .catItemDateCreated").text().trim();
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 
                 } catch (error) { 
                     console.error(error);

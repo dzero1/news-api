@@ -44,7 +44,7 @@ export default class AdaDerana extends BaseAdapter {
                     const img = $(v).find(".thumb-image img").attr('src').trim();
                     const time = $(v).find(".comments span").text().trim().substring(2).replaceAll(" ", " ");
 
-                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE).toJson());
+                    newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 
                 } catch (error) { 
                     console.error(error);
