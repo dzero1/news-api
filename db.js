@@ -10,7 +10,7 @@ const client = new MongoClient(process.env.db, {
     }
 });
 
-export async function getNewsCache(sources, languages) {
+export async function getNewsCache(sources) {
     let results = [];
     try {
         // Connect the client to the server	(optional starting in v4.7)
@@ -19,15 +19,15 @@ export async function getNewsCache(sources, languages) {
 
         const coll = client.db('dan').collection('news360');
 
-        const filter = {"source": {$in : sources }, "language": { $in: languages } }
+        const filter = {"source": {$in : sources }}
         console.log(filter);
 
         const cursor = coll.find(filter);
-
+ 
         // print a message if no documents were found
         // if ((await cursor.count()) === 0) {
         if (await cursor.count() === 0) {
-            console.log("No documents found!", { "source": sources, "language": languages });
+            console.log("No documents found!", { "source": sources });
         }
 
         results = (await cursor.map(doc => doc.news).toArray()).flat();
@@ -72,6 +72,7 @@ export async function insertAllToDB(docs) {
         await client.connect();
         const coll = client.db('dan').collection('news360');
         await coll.insertMany(docs);
+        return;
     } finally {
       // Ensures that the client will close when you finish/error
       try { await client.close(); } catch (error) {}

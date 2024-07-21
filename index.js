@@ -1,4 +1,4 @@
-import express, { json } from "express";
+import express from "express";
 import cors from "cors";
 import getNews from "./news.js";
 import {deleteAll, getNewsCache, insertAllToDB, insertNewsToDB} from "./db.js";
@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 });
 
 app.get("/ping", async function (req, res) {
-    res.status(200).send("pong");
+    res.status(200).json({"status": "pong"});
 });
 
 app.get("/news", async function (req, res) {
@@ -51,11 +51,10 @@ app.get("/news", async function (req, res) {
 app.post("/scrap-news", async function (req, res) {
     const source = req.query.source || "";
     const language = req.query.language || "english";
-    const news = await getNews(source, language);
+    const sourceName = `${source}_${language}`;
+    const news = await getNews(sourceName);
 
-    if (news.length){
-        insertNewsToDB(source, language, news);
-    }
+    insertNewsToDB(sourceName, language, news);
 
     res.status(200).json({"news": news});
 });
@@ -69,9 +68,13 @@ async function sourceScrap(sources, languages){
         for (let j = 0; j < languages.length; j++) {
             const language = languages[j];
             
-            let n = await getNews(source, language);
+            const sourceName = `${source}_${language}`;
+
+            console.log("Scraping: ", sourceName);
+
+            let n = await getNews(sourceName);
             news.push({
-                "source": source,
+                "source": sourceName,
                 "language": language,
                 "news": n,
             });
@@ -102,7 +105,6 @@ app.post("/scrap-news-all", async function (req, res) {
 
     res.status(200).json({"news": news});
 });
-
 
 app.listen(3000, function () {
     console.log("Server started on port http://localhost:3000");

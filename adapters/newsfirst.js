@@ -20,7 +20,8 @@ export default class NewsFirst extends BaseAdapter {
                     const title = v.title.rendered;
                     const href =  `https://${language}.newsfirst.lk/${v.post_url}`;
                     const img = v.images.mobile_banner;
-                    const time = v.modified;
+                    const dt = new Date(v.modified);
+                    const time = dt.toLocaleDateString("en-UK", { year: "numeric", month: "short", day: "numeric" }) + " " + dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
                     newsList.push(new NewsFormat(title, href, img, time, "", this.SOURCE, language).toJson());
                 } catch (error) {

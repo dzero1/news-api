@@ -16,12 +16,14 @@ import LankaCNews from './adapters/lankacnews.js';
 import LankaTruth from './adapters/lankatruth.js';
 import FT from './adapters/ft.js';
 
-export default async function getNews(source, language = "english") {
+export default async function getNews(sourceName) {
     let news = [];
-    switch (source) {
+    const source = sourceName.split("_")[0];
+    const language = sourceName.split("_")[1];
 
+    switch (source) {
         // multi language
-        case "newslk":
+        case `newslk`:
             news = await NewsLK.getNews(10, language);
             break;
         case "newsfirst":

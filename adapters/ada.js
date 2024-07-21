@@ -22,7 +22,10 @@ export default class Ada extends BaseAdapter {
                     const content = $(v).find(".cat-b-text").text().trim();
                     const href = $(v).find("a").attr('href').trim();
                     const img = $(v).find(".cat-image img").attr('src').trim();
-                    const time = $(v).find(".cat-detail-1 h6").text().trim();
+                    let time = $(v).find(".cat-detail-1 h6").text().trim();
+                    time = time.substring(3, 6) + time.substring(0, 3) + time.substring(6)
+                    var dt = new Date(time);
+                    time = dt.toLocaleDateString("en-UK", { year: "numeric", month: "short", day: "numeric" }) + " " + dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
                     newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 

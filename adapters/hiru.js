@@ -30,7 +30,9 @@ export default class Hiru extends BaseAdapter {
                     const content = "";
                     const href = $(v).find(`.column.middle a`).attr('href').trim();
                     const img = $(v).find(".sc-image img").attr('src').trim();
-                    const time = $(v).find("..middle-tittle-time").text().trim();
+                    let time = $(v).find(".middle-tittle-time").text().trim();
+                    var dt = new Date(time.split(", ")[1].replace("- ", ""));
+                    time = dt.toLocaleDateString("en-UK", { year: "numeric", month: "short", day: "numeric" }) + " " + dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
                     newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 

@@ -17,11 +17,13 @@ export default class FT extends BaseAdapter {
             for (let i = 0; i < Math.min(count, news.length); i++) {
                 const v = news[i];
                 try {
-                    const img = $(v).find("img").attr('src');
+                    const img = $(v).find("img").attr('src') ?? "";
                     const title = $(v).find(".card-body .newsch").text().trim();
                     const content = "";
                     const href = $(v).find("a").attr('href').trim();
-                    const time = $(v).find(".card-body .date").text().trim().replace(title, '').trim();
+                    let time = $(v).find(".card-body .date").text().trim().replace(title, '').trim().split(", ")[1];
+                    var dt = new Date(time);
+                    time = dt.toLocaleDateString("en-UK", { year: "numeric", month: "short", day: "numeric" }) + " " + dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
                     newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
                 } catch (error) {
