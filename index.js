@@ -1,7 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.dev' });
+
+
 import express from "express";
 import cors from "cors";
 import getNews from "./news.js";
-import {deleteAll, getNewsCache, insertAllToDB, insertNewsToDB} from "./db.js";
+import {deleteAll, getNewsCache, insertAllToDB, insertNewsToDB, connectDB} from "./db.js";
+
+// console.log(process.env)
+// console.log(process.env.db)
 
 const app = express();
 app.use(express.json());
@@ -108,5 +115,6 @@ app.post("/scrap-news-all", async function (req, res) {
 
 app.listen(3000, function () {
     console.log("Server started on port http://localhost:3000");
+    connectDB();
 });
 export default app;

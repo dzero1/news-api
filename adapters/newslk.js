@@ -10,14 +10,14 @@ export default class NewsLK extends BaseAdapter {
         const newsList = [];
         try {
             let srcPrefix = "https://news.lk";
-            let url = "https://news.lk/news";
+            let url = "https://news.lk";
             switch (language) {
                 case 'sinhala':
-                    url = "https://sinhala.news.lk/news";
+                    url = "https://sinhala.news.lk";
                     srcPrefix = "https://sinhala.news.lk";
             break;
                 case 'tamil':
-                    url = "https://tamil.news.lk/news";
+                    url = "https://tamil.news.lk";
                     srcPrefix = "https://tamil.news.lk";
                     break;
             }
@@ -25,15 +25,15 @@ export default class NewsLK extends BaseAdapter {
             const response = await axios.get(url);
             const $ = cheerio.load(response.data);
 
-            const news = $(`#itemListPrimary .itemContainer`);  // Select all news elements
+            const news = $(`.intro-items .sppb-addon-article`);  // Select all news elements
             for (let i = 0; i < Math.min(count, news.length); i++) {
                 const v = news[i];
                 try {
-                    const title = $(v).find(`.catItemHeader .catItemTitle`).text().trim();
+                    const title = $(v).find(`h3`).text().trim();
                     const content = "";
-                    const href = srcPrefix + $(v).find(`.catItemHeader .catItemTitle a`).attr('href').trim();
-                    const img = srcPrefix + $(v).find(`.catItemImageBlock img`).attr('src').trim();
-                    const time = $(v).find(".catItemHeader .catItemDateCreated").text().trim();
+                    const href = srcPrefix + $(v).find(`h3 a`).attr('href').trim();
+                    const img = srcPrefix + $(v).find(`img`).attr('src').trim();
+                    const time = $(v).find(".sppb-meta-date").text().trim();
 
                     newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
 

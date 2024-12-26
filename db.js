@@ -2,13 +2,20 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
 // Connect mongo db
-const client = new MongoClient(process.env.db, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-});
+var client;
+
+export function connectDB() {
+    client = new MongoClient(process.env.db, {
+        serverApi: {
+          version: ServerApiVersion.v1,
+          strict: true,
+          deprecationErrors: true,
+          useNewUrlParser: true,
+        }
+    });
+    testDB();
+}
+
 
 export async function getNewsCache(sources) {
     let results = [];
@@ -108,4 +115,3 @@ async function testDB() {
     }
     return;
 }
-testDB();

@@ -21,8 +21,13 @@ export default class Island extends BaseAdapter {
                     const title = $(v).find("h2").text().trim();
                     const content = $(v).find("p").text().trim();
                     const href = $(v).attr('href').trim();
-                    let imgInfo = $(v).find("img").data('srcset') || $(v).find("img").attr('data-src');
-                    const img = imgInfo.trim().split(",")[0].split(" ")[0].trim()
+                    let imgInfo = $(v).find(".wp-post-image").attr('srcset') || $(v).find(".wp-post-image").attr('data-src') || $(v).find(".wp-post-image").attr('src');
+                    let img
+                    try {
+                        img = imgInfo.trim().split(",")[0].split(" ")[0].trim()
+                    } catch (error) {
+                        console.log(title);
+                    }
                     const time = $(v).find(".mvp-cd-date").text().trim();
 
                     newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
@@ -40,8 +45,13 @@ export default class Island extends BaseAdapter {
                     const title = $(v).find(".mvp-blog-story-in h2").text().trim();
                     const content = $(v).find(".mvp-blog-story-in p").text().trim();
                     const href = $(a).attr('href').trim();
-                    let imgInfo = $(v).find(".mvp-blog-story-img img.mvp-reg-img").data('srcset') || $(v).find(".mvp-blog-story-img img.mvp-reg-img").attr('data-src');
-                    const img = imgInfo.trim().split(",")[0].split(" ")[0].trim()
+                    let imgInfo = $(v).find(".wp-post-image").attr('srcset') || $(v).find(".wp-post-image").attr('data-src');
+                    let img
+                    try {
+                        img = imgInfo.trim().split(",")[0].split(" ")[0].trim()
+                    } catch (error) {
+                        console.log(title);
+                    }
                     const time = $(v).find(".mvp-cd-date").text().trim();
 
                     newsList.push(new NewsFormat(title, href, img, time, content, this.SOURCE, language).toJson());
